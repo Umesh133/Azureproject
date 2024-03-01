@@ -380,17 +380,19 @@ img {
 .slide-4 {
   background-image: url("{% static 'images/ecom-banner3.jpg' %}");
 }
-.chatbot-btn {
-    position: fixed;
-    bottom: 20px; /* Adjust this value to position the button vertically */
-    right: 20px; /* Adjust this value to position the button horizontally */
-    z-index: 9999; /* Ensure the button is above other elements */
+#chatbotButton button {
     background-color: #3fcd7f;
     color: #fff;
+    border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-  }
+}
+
+#chatbotContainer {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
   </style>
 
 
@@ -475,11 +477,13 @@ img {
 <h3 style="text-align:center; color:#3E454C;">No Search Found</h3>
 
 {%endif%}
-<!-- Embedding the chatbot iframe -->
-<iframe id="chatbot-frame" src="https://webchat.botframework.com/embed/cbotecomlang-bot?s=4V1A_N1Rvko.rWEYJVTmznfJHv2nG7BL4w_8ArHyDF1Qo8XGhOWuNco" style="display: none;"></iframe>
+<div id="chatbotButton" style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
+  <button onclick="toggleChatbot()">Open Chatbot</button>
+</div>
 
-<!-- Chatbot button -->
-<div class="chatbot-btn" onclick="toggleChatbot()">Need Help? Chat with us!</div>
+<div id="chatbotContainer" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 998;">
+  <iframe id="chatbotFrame" src="https://webchat.botframework.com/embed/cbotecomlang-bot?s=4V1A_N1Rvko.rWEYJVTmznfJHv2nG7BL4w_8ArHyDF1Qo8XGhOWuNco" style="height: 502px; max-height: 502px; border: none;"></iframe>
+</div>
 
 <script>
     {%if messages %}
@@ -494,13 +498,13 @@ img {
 
 <script>
   function toggleChatbot() {
-    var chatbotFrame = document.getElementById('chatbot-frame');
-    if (chatbotFrame.style.display === 'none') {
-      chatbotFrame.style.display = 'block';
+    var chatbotContainer = document.getElementById("chatbotContainer");
+    if (chatbotContainer.style.display === "none") {
+        chatbotContainer.style.display = "block";
     } else {
-      chatbotFrame.style.display = 'none';
+        chatbotContainer.style.display = "none";
     }
-  }
+}
 </script>
 
 
