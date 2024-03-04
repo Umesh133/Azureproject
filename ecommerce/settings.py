@@ -81,12 +81,8 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'serverumesh',
-        'USER': 'admin12',
-        'PASSWORD': 'Umesh@123',
-        'HOST': 'serverumesh.mysql.database.azure.com',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
